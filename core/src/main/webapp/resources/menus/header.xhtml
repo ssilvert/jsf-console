@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en-US"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:b="http://richfaces.org/sandbox/bootstrap">
+
+    <b:navbar inverse="true">
+        <f:facet name="brand">
+            <h:graphicImage url="/resources/icons/as7_logo_32x32x32.png" styleClass="brand"/>
+            <h:outputText value="#{msg.adminconsole}" styleClass="brand"/>
+        </f:facet>
+        <b:positionFacet horizontal="right">
+            <h:form id="headerForm">
+                <a4j:outputPanel styleClass="btn btn-inverse">
+                    <rich:toggleControl event="click" targetPanel=":mainPanel" targetItem="profile" />
+                    <b:icon value="user"/>
+                    <h:outputText value=" #{msg.profile}"/>
+                </a4j:outputPanel>
+                <a4j:outputPanel styleClass="btn btn-inverse">
+                    <rich:toggleControl event="click" targetPanel=":mainPanel" targetItem="messages" />
+                    <b:icon value="envelope"/>
+                    <h:outputText value=" #{msg.messages}"/>
+                </a4j:outputPanel>
+                <a4j:outputPanel rendered="#{facesContext.externalContext.isUserInRole('admin')}" styleClass="btn btn-inverse">
+                    <rich:toggleControl event="click" targetPanel=":mainPanel" targetItem="security" />
+                    <b:icon value="lock"/>
+                    <h:outputText value=" #{msg.security}"/>
+                </a4j:outputPanel>
+            </h:form>
+            <h:form>
+                <b:commandButton icon="share-alt"
+                                 value="#{msg.logout}"
+                                 action="#{logoutBean.logout}"
+                                 styleClass="btn-inverse"/>
+            </h:form>
+        </b:positionFacet>
+    </b:navbar>
+</html>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.jboss.jsf-console</groupId>
+    <artifactId>jsf-console</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>jsf-console</name>
+    <description>JSF Console Plugin Parent</description>
+    <modules>
+        <module>warlet-container</module>
+        <module>core</module>
+        <module>plugins</module>
+        <module>myconsole</module>
+    </modules>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.jboss.cliresolver</groupId>
+                <artifactId>cli-resolver</artifactId>
+                <version>1.0.0.Alpha2</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+</project>

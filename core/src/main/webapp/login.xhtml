@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en-US"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:b="http://richfaces.org/sandbox/bootstrap">
+    <h:head>
+        <title>JBoss AS Console POC</title>
+    </h:head>
+
+    <h:body>
+        <c:set var="severity" value="info"/>
+        <b:gridContainer>
+            <b:gridRow>
+                <b:gridColumn span="4" offset="4">
+                    <b:navbar inverse="true">
+                        <f:facet name="brand">
+                            <h:graphicImage url="/resources/icons/as7_logo_32x32x32.png" styleClass="brand"/>
+                            <h:outputText value="#{msg.adminconsole}" styleClass="brand"/>
+                        </f:facet>
+                    </b:navbar>
+                </b:gridColumn>
+            </b:gridRow>
+            <b:gridRow>
+                <b:gridColumn span="4" offset="4" id="loginColumn">
+                    <b:alert severity="#{severity}">
+                        <h:form prependId="false" id="login" method="post" onsubmit="document.getElementById('login').action='j_security_check';" name="loginForm" style="form-horizontal">
+                            <h:panelGroup rendered="#{requestScope['javax.servlet.forward.servlet_path'] == '/j_security_check'}">
+                                <b:alert severity="error" layout="block" header="#{msg.loginfailed}"/>
+                            </h:panelGroup>
+                            <div class="control-group">
+                                <h:outputLabel value="#{msg.username}" for="j_username" styleClass="control-label" />
+                                <div class="controls">
+                                    <b:input id="j_username" placeholder="#{msg.username}" />
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <h:outputLabel value="#{msg.password}" for="j_password" styleClass="control-label" />
+                                <div class="controls">
+                                    <b:input id="j_password" type="password" placeholder="#{msg.password}"/>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <div class="controls">
+                                    <input type="submit" class="btn" value="#{msg.login}"/>
+                                </div>
+                            </div>
+
+                        </h:form>
+                    </b:alert>
+                </b:gridColumn>
+            </b:gridRow>
+        </b:gridContainer>
+    </h:body>
+
+</html>

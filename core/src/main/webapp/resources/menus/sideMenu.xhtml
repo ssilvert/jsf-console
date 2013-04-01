@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en-US"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:b="http://richfaces.org/sandbox/bootstrap">
+
+    <h:form id="sideMenuForm">
+        <h:panelGrid cellpadding="4" columns="1">
+            <b:badge value="#{msg.plugins}" severity="inverse" />
+            <hr size="5"/>
+            <a4j:outputPanel styleClass="btn">
+                <rich:toggleControl event="click" targetPanel=":mainPanel" targetItem="home" />
+                <b:icon value="home"/>
+                <h:outputText value=" #{msg.home}"/>
+            </a4j:outputPanel>
+<!--
+            <a4j:outputPanel styleClass="btn">
+                <rich:toggleControl event="click" targetPanel=":mainPanel" targetItem="memory" />
+                <b:icon value="home"/>
+                <h:outputText value=" Memory"/>
+            </a4j:outputPanel>
+-->
+            <c:forEach id="warlets"
+                       items="#{warlets.list}"
+                       var="warlet">
+                <a4j:outputPanel styleClass="btn" rendered="#{!roleManager.isPluginAccessBlocked(myrole, warlet.name)}">
+                    <rich:toggleControl event="click" targetPanel=":mainPanel" targetItem="#{warlet.name}" />
+                    <b:icon value="#{warlet.icon}"/>
+                    <h:outputText value=" #{warlet.menuLabel}"/>
+                </a4j:outputPanel>
+            </c:forEach>
+
+        </h:panelGrid>
+    </h:form>
+</html>

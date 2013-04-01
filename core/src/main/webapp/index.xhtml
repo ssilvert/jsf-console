@@ -1,0 +1,73 @@
+<ui:composition template="/resources/templates/template.xhtml" xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:rich="http://richfaces.org/rich"
+                xmlns:a4j="http://richfaces.org/a4j" xmlns:b="http://richfaces.org/sandbox/bootstrap"
+                xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:tree="http://java.sun.com/jsf/composite/components/resourcetree">
+    <ui:define name="content">
+        <rich:togglePanel id="mainPanel" switchType="client">
+            <rich:togglePanelItem name="home">
+                <b:alert severity="#{severity}">
+                    <h3>
+                        <b:icon value="home"/>
+                        <h:outputText value=" #{msg.home}"/>
+                    </h3>
+                    <ui:include src="/home.xhtml"/>
+                </b:alert>
+            </rich:togglePanelItem>
+<!--
+            <rich:togglePanelItem name="memory">
+                <b:alert severity="#{severity}">
+                    <h3>
+                        <b:icon value="home"/>
+                        <h:outputText value=" Memory"/>
+                    </h3>
+                    <ui:include src="/memory.xhtml"/>
+                </b:alert>
+            </rich:togglePanelItem>
+-->
+            <rich:togglePanelItem name="profile">
+                <b:alert severity="#{severity}">
+                    <h3>
+                        <b:icon value="user"/>
+                        <h:outputText value=" #{msg.profile}"/>
+                    </h3>
+                    <ui:include src="/profile.xhtml"/>
+                </b:alert>
+            </rich:togglePanelItem>
+
+            <rich:togglePanelItem name="messages">
+                <b:alert severity="#{severity}">
+                    <h3>
+                        <b:icon value="envelope"/>
+                        <h:outputText value=" #{msg.messages}"/>
+                    </h3>
+                    <ui:include src="/messages.xhtml"/>
+                </b:alert>
+            </rich:togglePanelItem>
+
+            <rich:togglePanelItem name="security">
+                <b:alert severity="#{severity}">
+                    <h3>
+                        <b:icon value="lock"/>
+                        <h:outputText value=" #{msg.security}"/>
+                    </h3>
+                    <ui:include src="/security.xhtml"/>
+                </b:alert>
+            </rich:togglePanelItem>
+
+            <c:forEach id="warlets"
+                       items="#{warlets.list}"
+                       var="warlet">
+                <rich:togglePanelItem name="#{warlet.name}">
+                    <b:alert severity="#{severity}">
+                        <h3>
+                            <b:icon value="#{warlet.icon}"/>
+                            <h:outputText value=" #{warlet.menuLabel}"/>
+                        </h3>
+                        <ui:include src="#{warlet.homePage}"/>
+                    </b:alert>
+                </rich:togglePanelItem>
+            </c:forEach>
+        </rich:togglePanel>
+    </ui:define>
+</ui:composition>

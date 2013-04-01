@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:jsf="http://java.sun.com/jsf"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <c:set var="platform" value="#{core_dash_service_eq_platform_dash_mbean}" scope="session"/>
+    <c:set var="memory" value="#{platform.type_eq_memory}" scope="session"/>
+    <c:set var="heap" value="#{memory.heap_dash_memory_dash_usage}" scope="session"/>
+
+
+    <body jsf:id="body">
+        <form jsf:id="memform" jsf:prependId="false">
+            <c:set var="nonheap" value="#{memory.non_dash_heap_dash_memory_dash_usage}" scope="request"/>
+            <label for="heap">Heap (#{heap.committed.toString()} of #{heap.max.toString()})</label>
+            <meter jsf:id="heap" min="0" max="#{heap.max.toString()}" value="#{heap.committed.toString()}"/>
+
+            <label for="nonheap">Non-Heap (#{nonheap.committed.toString()} of #{nonheap.max.toString()})</label>
+            <meter jsf:id="nonheap" min="0" max="#{nonheap.max.toString()}" value="#{nonheap.committed.toString()}"/>
+            <button class="btn" type="button" icon="refresh">
+                Refresh
+                <f:ajax event="click" render="@form"/>
+            </button>
+        </form>
+    </body>
+</html>

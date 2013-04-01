@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:rich="http://richfaces.org/rich" xmlns:b="http://richfaces.org/sandbox/bootstrap"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <b:heroUnit heading="JBoss AS #{msg.adminconsole}">
+        #{msg.fullydynamicconsole}
+    </b:heroUnit>
+
+    <p>
+        <h:outputText value="Note that you are allowed to change the server name below.  It is bound to the management model declaratively using cli-resolver.  No need to submit a large form.  When you exit the field it just updates the server using AJAX."/>
+    </p>
+    <p>
+        <h:outputText value="The rest are read-only values from the management model.  BTW, loclized help is available by hovering over any label."/>
+    </p>
+    <b:alert severity="warning">
+        <p>
+            <h3>
+                <h:form>
+                    <h:panelGrid columns="2" cellpadding="10">
+                        <b:tooltip title="#{cliUtil.helpText(_root_, 'name')}">
+                            <b:label value="Server Name:"/>
+                        </b:tooltip>
+                        <h:inputText value="#{_root_.name}">
+                            <f:ajax render="@this"/>
+                        </h:inputText>
+
+                        <c:set var="runtime" value="#{core_dash_service_eq_platform_dash_mbean.type_eq_runtime}"/>
+                        <b:tooltip title="#{cliUtil.helpText(runtime, 'start-time')}">
+                            <b:label value="Start Time:"/>
+                        </b:tooltip>
+                        <h:outputText value="#{cliUtil.asDate(runtime.start_dash_time)}">
+                            <f:convertDateTime type="both"/>
+                        </h:outputText>
+                    </h:panelGrid>
+                </h:form>
+            </h3>
+        </p>
+        <p>
+            <h:panelGrid columns="4" cellpadding="10">
+                <b:tooltip title="#{cliUtil.helpText(_root_, 'launch-type')}">
+                    <b:label>Launch Type:</b:label>
+                </b:tooltip>
+                <h:outputText value=" #{_root_.launch_dash_type}"/>
+
+                <b:tooltip title="#{cliUtil.helpText(_root_, 'process-type')}">
+                    <b:label>Process Type:</b:label>
+                </b:tooltip>
+                <h:outputText value=" #{_root_.process_dash_type}"/>
+
+                <b:tooltip title="#{cliUtil.helpText(_root_, 'release-version')}">
+                    <b:label>Release Version:</b:label>
+                </b:tooltip>
+                <h:outputText value=" #{_root_.release_dash_version}"/>
+
+                <b:tooltip title="#{cliUtil.helpText(_root_, 'management-major-version')}">
+                    <b:label>Management Version:</b:label>
+                </b:tooltip>
+                <h:outputText value=" #{_root_.management_dash_major_dash_version}.#{_root_.management_dash_minor_dash_version}.#{_root_.management_dash_micro_dash_version}"/>
+            </h:panelGrid>
+        </p>
+    </b:alert>
+</html>
