@@ -12,8 +12,9 @@
     <artifactId>plugins</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <name>plugins</name>
+    <name>JSF Console Plugin Parent</name>
     <description>JSF Console Plugin Parent</description>
+    
     <modules>
         <module>management-model</module>
         <module>snapshot-mgr</module>

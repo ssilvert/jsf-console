@@ -10,7 +10,7 @@
 
     <artifactId>snapshot-mgr</artifactId>
     <version>1.0.0-SNAPSHOT</version>
-    <name>snapshot-mgr</name>
+    <name>JSF Console Snapshot Manager Plugin</name>
     <packaging>jar</packaging>
 
     <properties>
@@ -29,7 +29,7 @@
         <dependency>
             <groupId>org.jboss.warlet</groupId>
             <artifactId>warlet-container</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>org.jboss</groupId>
@@ -42,12 +42,6 @@
             <artifactId>jboss-javaee-web-6.0</artifactId>
             <version>3.0.1.Final</version>
             <type>pom</type>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.as</groupId>
-            <artifactId>jboss-as-cli</artifactId>
-            <version>${version.jboss-as7}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>

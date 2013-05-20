@@ -1,0 +1,5 @@
+/myconsole/target/
+/plugins/management-model/target/
+/plugins/snapshot-mgr/target/
+/core/target/
+/warlet-container/target/

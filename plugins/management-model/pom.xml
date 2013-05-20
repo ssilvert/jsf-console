@@ -10,7 +10,7 @@
 
     <artifactId>management-model</artifactId>
     <version>1.0.0-SNAPSHOT</version>
-    <name>management-model</name>
+    <name>JSF Console Mgt Model Editor Plugin</name>
     <packaging>jar</packaging>
 
     <properties>
@@ -42,12 +42,6 @@
             <artifactId>jboss-javaee-web-6.0</artifactId>
             <version>3.0.1.Final</version>
             <type>pom</type>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.as</groupId>
-            <artifactId>jboss-as-cli</artifactId>
-            <version>${version.jboss-as7}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
